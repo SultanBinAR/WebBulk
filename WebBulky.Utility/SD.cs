@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebBulky.Utility
 {
+    //Static Details - SD
     public static class SD
     {
         public const string Role_Customer = "Customer";
