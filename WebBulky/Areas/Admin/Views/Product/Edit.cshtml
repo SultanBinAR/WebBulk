@@ -1,0 +1,76 @@
+﻿@model Product
+
+<form method="post">
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        <div class="row pb-2">
+            <h2 class="text-primary">
+                Edit Product
+            </h2>
+            <hr />
+        </div>
+        <!--To get all the validation errors in one place. "All" checks for all validations | "ModelOnly" for Custom Validations-Not properties like Name & D. O. | "None" for none.  -->
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Title" class="ms-2 pt-2"></label>
+            <input asp-for="Title" class="form-control shadow border-0" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Description" class="ms-2 pt-2"></label>
+            <input asp-for="Description" class="form-control shadow border-0" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="ISBN" class="ms-2 pt-2"></label>
+            <input asp-for="ISBN" class="form-control shadow border-0" />
+            <span asp-validation-for="ISBN" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Author" class="ms-2 pt-2"></label>
+            <input asp-for="Author" class="form-control shadow border-0" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="ListPrice" class="ms-2 pt-2"></label>
+            <input asp-for="ListPrice" class="form-control shadow border-0" />
+            <span asp-validation-for="ListPrice" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Price" class="ms-2 pt-2"></label>
+            <input asp-for="Price" class="form-control shadow border-0" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Price50" class="ms-2 pt-2"></label>
+            <input asp-for="Price50" class="form-control shadow border-0" />
+            <span asp-validation-for="Price50" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Price100" class="ms-2 pt-2"></label>
+            <input asp-for="Price100" class="form-control shadow border-0" />
+            <span asp-validation-for="Price100" class="text-danger"></span>
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="CategoryId" class="ms-2 pt-2"></label>
+            <input asp-for="CategoryId" class="form-control shadow border-0" />
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Update</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+        //Partial will always look for Shared folder inside views to get partial.
+        //These are unaware of the Custom validations.
+    }
+}

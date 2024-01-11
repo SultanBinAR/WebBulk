@@ -1,0 +1,58 @@
+﻿@using WebBulky.Models.Models;
+@model Product
+
+<form method="post">
+    <input asp-for="Id" hidden/>
+    <div class="border p-3 py-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">
+                Delete Product
+            </h2>
+            <hr />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Title" class="ms-2 pt-2"></label>
+            <input asp-for="Title" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Description" class="ms-2 pt-2"></label>
+            <input asp-for="Description" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="ISBN" class="ms-2 pt-2"></label>
+            <input asp-for="ISBN" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Author" class="ms-2 pt-2"></label>
+            <input asp-for="Author" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="ListPrice" class="ms-2 pt-2"></label>
+            <input asp-for="ListPrice" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Price" class="ms-2 pt-2"></label>
+            <input asp-for="Price" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Price50" class="ms-2 pt-2"></label>
+            <input asp-for="Price50" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="Price100" class="ms-2 pt-2"></label>
+            <input asp-for="Price100" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="form-floating py-2 col-12 mb-3">
+            <label asp-for="CategoryId" class="ms-2 pt-2"></label>
+            <input asp-for="CategoryId" disabled class="form-control shadow border-0" />
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Delete</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary border form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
