@@ -16,11 +16,13 @@ namespace WebBulky.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Company> Companies { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); //This method is to use Scaffold & run Identiy as "Keys of Identity tables are mapped in the OnModelCreating() method."
 
-            //Seeding the database
+            //Seeding the database dynamically using Model/Table Ref.!
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1},
                 new Category { Id = 2, Name = "Drama", DisplayOrder = 2 },
@@ -110,6 +112,44 @@ namespace WebBulky.DataAccess.Data
                     Price100 = 20,
                     CategoryId = 3,
                     ImageUrl = ""
+                }
+                );
+            modelBuilder.Entity<Company>().HasData(
+                new Company {
+                    Id = 1,
+                    Name = "Vivid Books",
+                    StreetAddress = "999 Vid St.",
+                    City = "Vid City",
+                    PostalCode = "7776",
+                    State = "IL",
+                    PhoneNumber = "0018650888",
+                },
+                new Company {
+                    Id = 2,
+                    Name = "Sniper Books",
+                    StreetAddress = "999 Vid St.",
+                    City = "Vid City",
+                    PostalCode = "7776",
+                    State = "NY",
+                    PhoneNumber = "+17541222488"
+                },
+                new Company {
+                    Id = 3,
+                    Name = "Creative Publishers",
+                    StreetAddress = "1999 Pacid St.",
+                    City = "London City",
+                    PostalCode = "37776",
+                    State = "EG",
+                    PhoneNumber = "0018650888"
+                },
+                new Company {
+                    Id = 4,
+                    Name = "Alef Publishers",
+                    StreetAddress = "KHE MZ, 3rd St.",
+                    City = "Ulin City",
+                    PostalCode = "6337776",
+                    State = "PG",
+                    PhoneNumber = "90018650888"
                 }
                 );
         }
