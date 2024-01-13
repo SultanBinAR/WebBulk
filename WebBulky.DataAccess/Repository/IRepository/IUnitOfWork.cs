@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebBulky.Models;
 
 namespace WebBulky.DataAccess.Repository.IRepository
 {
@@ -11,6 +12,8 @@ namespace WebBulky.DataAccess.Repository.IRepository
         ICategoryRepository Category { get;}
         IProductRepository Product { get;}
         ICompanyRepository Company { get;}
+        IShoppingCartRepository ShoppingCart { get;}
+        IApplicationUserRepository ApplicationUser { get;}
         void Save();
     }
 }
