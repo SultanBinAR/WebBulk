@@ -26,9 +26,18 @@ namespace WebBulky.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
+            //Refraining EFC Not to track activity like in Shooping Cart Count Case!
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
             query = query.Where(filter);
             //Adding IncludeProperty in Get()
             if (!String.IsNullOrEmpty(includeProperties))
@@ -40,11 +49,17 @@ namespace WebBulky.DataAccess.Repository
                 }
             }
             return query.FirstOrDefault();
+
         }
 
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+
+            }
             //Adding same IncludeProperty in GetAll()
             if (!String.IsNullOrEmpty(includeProperties))
             {

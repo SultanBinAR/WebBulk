@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 using WebBulky.DataAccess.Repository.IRepository;
 using WebBulky.Models;
 using WebBulky.Models.Models;
@@ -23,13 +25,48 @@ namespace WebBulky.Areas.Customer.Controllers
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(productList);
         }
-        public IActionResult Details(int? productId)
+        public IActionResult Details(int productId)
         {
-            Product product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category");
-            return View(product);
+            ShoppingCart cart = new()
+            {
+                Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
+                Count = 1,
+                ProductId = productId
+            };
+            return View(cart);
         }
 
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            //MS Tag helpers to get the current user logged in?
+            var ClaimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = ClaimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId = userId; //Populating ShoppingCart ApplicationUserId with Authorize User Id.
 
+            //Exception handling for Duplicate entries in SCart. table
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId &&
+            u.ProductId == shoppingCart.ProductId);
+
+            if (cartFromDb != null)
+            {
+                //Shopping cart exists | adding new count value into previous count value!!!
+                cartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromDb); //If we remove this line, still count will be updated-bcuz EFC is constantly tracking that activity & will update count on _unitOfWork.Save() invoked.
+            }
+            else
+            {
+                //Add new cart record
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+            }
+
+            _unitOfWork.Save();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Privacy Action Starts here
         public IActionResult Privacy()
         {
             return View();
