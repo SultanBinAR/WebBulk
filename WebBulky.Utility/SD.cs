@@ -13,5 +13,20 @@ namespace WebBulky.Utility
         public const string Role_Company = "Company";
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Employee";
-    }
+
+		public const string StatusPending = "Pending";
+		public const string StatusApproved = "Approved";
+		public const string StatusInProcess = "Processing";
+		public const string StatusShipped = "Shipped";
+		public const string StatusCancelled = "Cancelled";
+		public const string StatusRefunded = "Refunded";
+
+		public const string PaymentStatusPending = "Pending";
+		public const string PaymentStatusApproved = "Approved";
+		public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
+		public const string PaymentStatusRejected = "Rejected";
+
+		//pk_test_51OYazkKE9umIUtjsSCQFc5F5FIoYpq3ZBZqK47teo6E0Mg5bXw0LWNVNDSDgf75e4OUphDvoqDgFFpgLwYB9gz7C004MyimHq1
+		//sk_test_51OYazkKE9umIUtjsTQse4EUO6kSgGXyMNjWdfse30lgMcwR6fgOs0MvGQQrbMUu98aJ1f1uyTiuxcCMKjzCiJFk500CySKuFLS
+	}
 }

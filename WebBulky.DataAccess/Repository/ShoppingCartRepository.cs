@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebBulky.DataAccess.Data;
 using WebBulky.DataAccess.Repository.IRepository;
-using WebBulky.Models;
+using WebBulky.Models.Models;
 
 namespace WebBulky.DataAccess.Repository
 {
