@@ -15,7 +15,7 @@ using WebBulky.Utility;
 namespace WebBulky.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -120,7 +120,7 @@ namespace WebBulky.Areas.Admin.Controllers
             }
             return View();
         }
-        //EDIT METHOD - [Functional untill Upsert() was not define & called.]
+        //EDIT METHOD - [Functional untill Upsert() was not define & called.] [Commented]
         /*public IActionResult Edit(int? id)
         //{
         //    if (id == null || id == 0)
@@ -152,7 +152,7 @@ namespace WebBulky.Areas.Admin.Controllers
         //}*/
 
 
-        //DELETE METHOD - [Functional untill API Calling not configured.]
+        //DELETE METHOD - [Functional untill API Calling not configured.] [Commented]
         /*public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)

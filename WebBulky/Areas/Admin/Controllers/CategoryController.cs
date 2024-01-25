@@ -8,7 +8,7 @@ using WebBulky.Utility;
 namespace WebBulky.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = SD.Role_Admin)] //Can be implemented on each Index individually or can be added like this: "Globally".
+    [Authorize(Roles = SD.Role_Admin)] //Can be implemented on each Index individually or can be added like this: "Globally".
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

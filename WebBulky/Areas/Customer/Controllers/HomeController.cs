@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 using WebBulky.DataAccess.Repository.IRepository;
 using WebBulky.Models;
 using WebBulky.Models.Models;
+using WebBulky.Utility;
 
 namespace WebBulky.Areas.Customer.Controllers
 {
@@ -54,11 +56,17 @@ namespace WebBulky.Areas.Customer.Controllers
                 //Shopping cart exists | adding new count value into previous count value!!!
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb); //If we remove this line, still count will be updated-bcuz EFC is constantly tracking that activity & will update count on _unitOfWork.Save() invoked.
+                _unitOfWork.Save();
             }
             else
             {
                 //Add new cart record
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save(); //1st It will save cart in DB, then we will be able to retreive from DB, right? for session!
+
+                //Session Process | Adding Session in project
+                //Getting Count of the current user has in shooping cart! [Remember for Bug]
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
 
             _unitOfWork.Save();

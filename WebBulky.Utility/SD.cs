@@ -26,6 +26,8 @@ namespace WebBulky.Utility
 		public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
 		public const string PaymentStatusRejected = "Rejected";
 
+		public const string SessionCart = "SessionShoppingCart";
+
 		//pk_test_51OYazkKE9umIUtjsSCQFc5F5FIoYpq3ZBZqK47teo6E0Mg5bXw0LWNVNDSDgf75e4OUphDvoqDgFFpgLwYB9gz7C004MyimHq1
 		//sk_test_51OYazkKE9umIUtjsTQse4EUO6kSgGXyMNjWdfse30lgMcwR6fgOs0MvGQQrbMUu98aJ1f1uyTiuxcCMKjzCiJFk500CySKuFLS
 	}
